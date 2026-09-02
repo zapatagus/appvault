@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07080c">
+<meta name="description" content="AppVault — catálogo de aplicaciones Android con demos, capturas, comparativa y descargas.">
+<title>AppVault — Descubre tu próxima app</title>
+<style>
+:root{--bg:#07080c;--surface:#0e1016;--surface2:#141720;--line:#262a35;--text:#f7f8fb;--muted:#9da3b1;--accent:#63e6d3;--accent2:#8b7cff;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{text-decoration:none;color:inherit}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(7,8,12,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.04em}.logo{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--accent),#fff);color:#06100e;display:grid;place-items:center;box-shadow:0 0 28px rgba(99,230,211,.18)}
+.nav{display:flex;gap:25px;color:#b9bec9;font-size:14px;font-weight:650}.nav a:hover{color:#fff}
+.hero{position:relative;min-height:650px;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;padding:76px 0 70px;overflow:hidden}
+.hero:before{content:"";position:absolute;width:650px;height:650px;right:-250px;top:-160px;background:radial-gradient(circle,rgba(139,124,255,.18),transparent 66%);pointer-events:none}
+.kicker{display:inline-flex;border:1px solid #303541;background:#0d0f14;padding:7px 11px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#c9ced8;font-weight:800}
+h1{font-size:clamp(46px,6vw,78px);line-height:.94;letter-spacing:-.065em;margin:18px 0 22px;max-width:700px}h1 span{background:linear-gradient(90deg,#fff 20%,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;line-height:1.65;color:var(--muted);max-width:650px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:#11131a;border-radius:12px;padding:12px 17px;font-weight:800;transition:.2s}.btn:hover{transform:translateY(-2px);border-color:#464b59}.btn.primary{background:#fff;color:#08090c;border-color:#fff}.btn.primary:hover{box-shadow:0 10px 30px rgba(255,255,255,.12)}
+.hero-card{position:relative;border:1px solid #303440;border-radius:24px;background:#0c0e13;padding:10px;box-shadow:0 30px 90px rgba(0,0,0,.48);transform:rotate(1deg)}.hero-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:17px}.float{position:absolute;left:-26px;bottom:26px;background:#151821;border:1px solid #363b48;border-radius:14px;padding:13px 15px;box-shadow:0 18px 40px rgba(0,0,0,.4);font-size:12px}.float b{display:block;font-size:15px;margin-bottom:2px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}.stat{padding:18px;border:1px solid var(--line);background:#0d0f14;border-radius:16px}.stat b{display:block;font-size:22px}.stat small{color:var(--muted)}
+section{padding:82px 0}.section-top{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}.section-top h2{font-size:38px;letter-spacing:-.05em;margin:0}.section-top p{color:var(--muted);max-width:570px;margin:0}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}.search{flex:1;min-width:220px;background:#0e1016;border:1px solid var(--line);color:#fff;border-radius:12px;padding:12px 14px;outline:none}.search:focus{border-color:#4b5363}
+.chip{cursor:pointer;background:#0e1016;border:1px solid var(--line);color:#bfc4ce;border-radius:999px;padding:10px 14px;font-weight:700}.chip.active{background:#fff;color:#08090c;border-color:#fff}
+.apps{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.app{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#13161d,#0d0f14);box-shadow:0 18px 60px rgba(0,0,0,.2)}.app-media{position:relative}.app video{display:block;width:100%;aspect-ratio:16/9;background:#000}.badge{position:absolute;top:14px;left:14px;padding:7px 10px;background:rgba(7,8,12,.78);border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:11px;font-weight:850;backdrop-filter:blur(10px)}
+.app-body{padding:24px}.app-title{display:flex;justify-content:space-between;gap:14px;align-items:start}.app h3{font-size:29px;letter-spacing:-.04em;margin:0 0 5px}.version{font-size:11px;color:#adb2bd;border:1px solid var(--line);padding:6px 8px;border-radius:8px;white-space:nowrap}.app p{color:var(--muted);margin:10px 0 18px}.tags{display:flex;flex-wrap:wrap;gap:7px}.tag{font-size:11px;color:#d6dae2;background:#0a0c10;border:1px solid #292d36;border-radius:999px;padding:6px 9px}.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:16px}.screens img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:9px;border:1px solid #2b2f38}.app-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.compare{overflow:auto;border:1px solid var(--line);border-radius:18px}.compare table{border-collapse:collapse;width:100%;min-width:700px}.compare th,.compare td{padding:16px 18px;border-bottom:1px solid var(--line);text-align:left}.compare th{background:#13161c;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#c8cdd7}.compare td{color:#c3c7d0}.compare tr:last-child td{border-bottom:0}.good{color:var(--accent)!important;font-weight:850}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{border:1px solid var(--line);background:#0e1015;border-radius:18px;padding:24px}.num{width:36px;height:36px;border-radius:10px;background:#fff;color:#08090c;display:grid;place-items:center;font-weight:900}.step h3{margin:18px 0 8px}.step p{margin:0;color:var(--muted)}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq details{background:#0e1015;border:1px solid var(--line);border-radius:14px;padding:17px}.faq summary{cursor:pointer;font-weight:800}.faq p{color:var(--muted);margin-bottom:0}
+.notice{margin-top:24px;border:1px solid #3b3521;background:#14120c;border-radius:14px;padding:15px 17px;color:#cfc7ad;font-size:13px}.notice b{color:#fff}
+footer{border-top:1px solid var(--line);padding:34px 0 55px;color:#858b98;font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-card{transform:none}.apps,.faq{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.section-top{display:block}.section-top p{margin-top:9px}.nav{display:none}}
+@media(max-width:560px){.wrap{width:min(var(--max),calc(100% - 24px))}.hero{padding-top:45px}.stats{grid-template-columns:1fr}section{padding:60px 0}.app-body{padding:18px}.float{left:12px;bottom:12px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="brand" href="#"><span class="logo">A</span> AppVault</a>
+<div class="nav"><a href="#apps">Aplicaciones</a><a href="#comparativa">Comparativa</a><a href="#como">Cómo funciona</a><a href="#faq">FAQ</a></div>
+</nav></div></header>
+
+<main>
+<section class="hero wrap">
+<div>
+<span class="kicker">Catálogo Android · demos reales</span>
+<h1>Conoce la app.<br><span>Prueba antes de descargar.</span></h1>
+<p class="lead">Un catálogo visual pensado para que tus clientes puedan ver cómo funciona cada aplicación, comparar sus características y descargar directamente la que mejor se adapte a sus necesidades.</p>
+<div class="actions"><a class="btn primary" href="#apps">Explorar aplicaciones ↓</a><a class="btn" href="#comparativa">Comparar opciones</a></div>
+<div class="stats"><div class="stat"><b>2</b><small>apps disponibles</small></div><div class="stat"><b>2</b><small>demostraciones en vídeo</small></div><div class="stat"><b>100%</b><small>descarga directa</small></div></div>
+</div>
+<div class="hero-card">
+<img src="assets/netflixmod/hero.png" alt="Vista de NetflixMod">
+<div class="float"><b>NetflixMod</b>Demo de interfaz disponible</div>
+</div>
+</section>
+
+<section id="apps"><div class="wrap">
+<div class="section-top"><div><h2>Aplicaciones</h2></div><p>Abre el vídeo, revisa las capturas y, cuando tengas claro cuál necesitas, utiliza el botón de descarga.</p></div>
+<div class="toolbar">
+<input class="search" id="search" type="search" placeholder="Buscar aplicación o característica…" aria-label="Buscar">
+<button class="chip active" data-filter="all">Todas</button><button class="chip" data-filter="tv">TV</button><button class="chip" data-filter="stream">Streaming</button>
+</div>
+<div class="apps">
+
+<article class="app" data-app="netflixmod" data-tags="tv streaming">
+<div class="app-media"><span class="badge">Android · TV</span>
+<video controls preload="metadata" poster="assets/netflixmod/NetFlixMod-000005.jpg"><source src="assets/netflixmod/demo.mp4" type="video/mp4">Tu navegador no admite vídeo HTML5.</video></div>
+<div class="app-body">
+<div class="app-title"><div><h3>NetflixMod</h3><span style="color:#858b97;font-size:12px">Experiencia para pantallas grandes</span></div><span class="version">APK</span></div>
+<p>Aplicación propia orientada a entretenimiento en Android. La demostración muestra la interfaz de selección y navegación del catálogo.</p>
+<div class="tags"><span class="tag">TV</span><span class="tag">Catálogo visual</span><span class="tag">Interfaz en español</span><span class="tag">Android</span></div>
+<div class="screens">
+<img src="assets/netflixmod/hero.png" alt="NetflixMod — captura principal" loading="lazy">
+<img src="assets/netflixmod/NetFlixMod-000015.jpg" alt="NetflixMod — captura 2" loading="lazy">
+<img src="assets/netflixmod/NetFlixMod-000030.jpg" alt="NetflixMod — captura 3" loading="lazy">
+</div>
+<div class="app-actions"><a class="btn primary" href="assets/netflixmod/NetflixMod.apk" download="NetflixMod.apk">↓ Descargar NetflixMod</a><a class="btn" href="#como">Ver detalles</a></div>
+</div></article>
+
+<article class="app" data-app="streamflix" data-tags="stream">
+<div class="app-media"><span class="badge">Android · Streaming</span>
+<video controls preload="metadata" poster="assets/streamflix/StreamFlix-000005.jpg"><source src="assets/streamflix/demo.mp4" type="video/mp4">Tu navegador no admite vídeo HTML5.</video></div>
+<div class="app-body">
+<div class="app-title"><div><h3>StreamFlix</h3><span style="color:#858b97;font-size:12px">Selector de proveedor y contenido</span></div><span class="version">APK</span></div>
+<p>Aplicación con selección de proveedor e idioma. El vídeo permite conocer su flujo de navegación antes de instalarla.</p>
+<div class="tags"><span class="tag">Streaming</span><span class="tag">Proveedores</span><span class="tag">Español</span><span class="tag">Android</span></div>
+<div class="screens">
+<img src="assets/streamflix/StreamFlix-000005.jpg" alt="StreamFlix — captura 1" loading="lazy">
+<img src="assets/streamflix/StreamFlix-000015.jpg" alt="StreamFlix — captura 2" loading="lazy">
+<img src="assets/streamflix/StreamFlix-000030.jpg" alt="StreamFlix — captura 3" loading="lazy">
+</div>
+<div class="app-actions"><a class="btn primary" href="assets/streamflix/StreamFlix.apk" download="StreamFlix.apk">↓ Descargar StreamFlix</a><a class="btn" href="#como">Ver detalles</a></div>
+</div></article>
+
+</div></div></section>
+
+<section id="comparativa"><div class="wrap">
+<div class="section-top"><h2>¿Cuál elegir?</h2><p>Una comparación rápida para que el cliente pueda tomar una decisión sin tener que instalar las dos aplicaciones.</p></div>
+<div class="compare"><table><thead><tr><th>Característica</th><th>NetflixMod</th><th>StreamFlix</th></tr></thead>
+<tbody>
+<tr><td>Demo en vídeo</td><td class="good">✓ Disponible</td><td class="good">✓ Disponible</td></tr>
+<tr><td>Capturas de interfaz</td><td class="good">✓</td><td class="good">✓</td></tr>
+<tr><td>Orientada a TV</td><td class="good">✓</td><td>Depende del dispositivo</td></tr>
+<tr><td>Selector de proveedor</td><td>—</td><td class="good">✓</td></tr>
+<tr><td>Selector de idioma</td><td class="good">✓</td><td class="good">✓</td></tr>
+<tr><td>Descarga directa</td><td class="good">✓ APK</td><td class="good">✓ APK</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section id="como"><div class="wrap">
+<div class="section-top"><h2>Así funciona</h2><p>La página convierte tu catálogo de apps en una pequeña tienda de presentación.</p></div>
+<div class="steps">
+<div class="step"><div class="num">1</div><h3>Mira la demo</h3><p>El cliente reproduce el vídeo para entender el flujo y la apariencia de la aplicación.</p></div>
+<div class="step"><div class="num">2</div><h3>Compara</h3><p>Consulta las etiquetas, capturas y tabla comparativa para encontrar la opción adecuada.</p></div>
+<div class="step"><div class="num">3</div><h3>Descarga</h3><p>El botón entrega directamente el APK correspondiente desde tu sitio.</p></div>
+</div>
+<div class="notice"><b>Consejo:</b> antes de publicar el repositorio públicamente, verifica que tienes derecho a distribuir los APK y todos los componentes, contenidos y marcas incluidos en ellos.</div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+<div class="section-top"><h2>Preguntas frecuentes</h2><p>Información útil para reducir dudas antes de la descarga.</p></div>
+<div class="faq">
+<details open><summary>¿Dónde se descargan las aplicaciones?</summary><p>Los botones apuntan a los APK almacenados dentro de la carpeta <code>assets</code> del propio sitio.</p></details>
+<details><summary>¿Puedo agregar más aplicaciones?</summary><p>Sí. Se puede duplicar una tarjeta, añadir sus capturas y vídeo, y agregar una fila en la comparativa.</p></details>
+<details><summary>¿Funciona en teléfonos y tablets?</summary><p>La web es responsive. La compatibilidad de cada APK depende de sus propios requisitos de Android.</p></details>
+<details><summary>¿Puedo cambiar el nombre y el diseño?</summary><p>Sí. AppVault, textos, logotipo, tipografías y secciones pueden personalizarse para convertirlo en tu marca.</p></details>
+</div></div></section>
+</main>
+
+<footer><div class="wrap foot"><span>© 2026 AppVault · Catálogo de aplicaciones</span><span>Diseñado para GitHub Pages</span></div></footer>
+
+<script>
+const search=document.getElementById('search');
+const chips=[...document.querySelectorAll('.chip')];
+const cards=[...document.querySelectorAll('.app')];
+let filter='all';
+function apply(){
+ const q=search.value.toLowerCase().trim();
+ cards.forEach(c=>{
+   const text=c.innerText.toLowerCase();
+   const tags=c.dataset.tags||'';
+   c.style.display=((filter==='all'||tags.includes(filter))&&(!q||text.includes(q)))?'':'none';
+ });
+}
+search.addEventListener('input',apply);
+chips.forEach(b=>b.addEventListener('click',()=>{chips.forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;apply()}));
+</script>
+</body>
+</html>
